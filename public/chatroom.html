@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Chat App</title>
+    <link rel="icon" href="/images/favicon.png">
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+
+<body>
+    <div class="chat">
+        <div id="left-user-panel" class="chat__sidebar">
+
+        </div>
+        <div class="chat__main">
+            <div id="chat-messages" class="chat__messages"></div>
+            <div class="compose">
+                <form id="message-form" onsubmit="handleFormSubmit(event)">
+                    <input id="txt_userMsg" name="txt_userMsg" placeholder="Message" required autocomplete="off">
+                    <button id="formButton">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script id="msg-template" type="text/html">
+        <div class="message">
+            <p>
+                <span class="message__name">{{username}}</span>
+                <span class="message__meta">{{timestamp}}</span>
+            </p>
+            <p>{{messageFromServer}}</p>
+        </div>
+    </script>
+
+    <script id="link-template" type="text/html">
+        <div class="message">
+            <p><a href="{{linkFromServer}}" target="_blank">{{msg}}</a></p>
+        </div>
+    </script>
+
+    <script id="left-panel-template" type="text/html">
+        <h2 class="chatroom-title">{{chatroom}}</h2>
+        <h3 class="list-title">Users</h3>
+        <ul class="users">
+            {{#users}}
+                <li>{{username}}</li>
+            {{/users}}
+        </ul>
+    </script>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"
+        integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.7.0/qs.min.js"
+        integrity="sha256-2YDIO5pt4Wix8peSXpmAOmux4MwHe54CANGsQT0yqfA=" crossorigin="anonymous"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/chat.js"></script>
+</body>
+
+</html>
